@@ -115,9 +115,9 @@ class VectorStoreService:
                 logger.error(f"[加载知识库]{path}加载失败,{str(e)}", exc_info=True)
                 continue
 
-# if __name__ == '__main__':
-#     vs = VectorStoreService()
-#     vs.load_document()
+if __name__ == '__main__':
+    vs = VectorStoreService()
+    vs.load_document()
 #
 #     retrieve = vs.get_retriever()
 #     res = retrieve.invoke('迷路了')
