@@ -80,7 +80,7 @@ class VectorStoreService:
 
         # 获取到data下面的txt pdf文件
         allowed_files_path:list[str] = listdir_with_allowed_type(get_abs_path(chroma_config["data_path"]), tuple(chroma_config["allow_knowledge_file_type"]))
-        print(allowed_files_path)
+
         for path in allowed_files_path:
             #获取文件的md5
             md5_hex = get_file_md5_hex(path)
@@ -115,13 +115,9 @@ class VectorStoreService:
                 logger.error(f"[加载知识库]{path}加载失败,{str(e)}", exc_info=True)
                 continue
 
-if __name__ == '__main__':
-    vs = VectorStoreService()
-    vs.load_document()
-
-    retrieve = vs.get_retriever()
-    res = retrieve.invoke('迷路了')
-
-    for r in res:
-        print(r)
-        print("*"*20)
+# if __name__ == '__main__':
+#     vs = VectorStoreService()
+#     vs.load_document()
+#
+#     retrieve = vs.get_retriever()
+#     res = retrieve.invoke('迷路了')

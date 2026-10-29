@@ -26,6 +26,3 @@ rag_config= load_rag_config()
 chroma_config= load_chroma_config()
 prompts_config= load_prompts_config()
 agent_config= load_agent_config()
-
-if __name__ == '__main__':
-    print(type(agent_config),agent_config["chat_model_name"])
