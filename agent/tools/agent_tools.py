@@ -1,6 +1,5 @@
 import os
 import random
-
 from rag.rag_service import RagSummarizeService
 from langchain_core.tools import  tool
 from utils.config_handler import rag_config
@@ -58,6 +57,10 @@ def generate_external_data():
                 "对比": comparison,
             }
 
+"""
+1. 处理.csv文件为dict
+2. 在dict里面获取data
+"""
 @tool(description="从外部系统中获取指定用户在指定月份的使用记录，以纯字符串形式返回，如果未检索到则返回空字符")
 def fetch_external_data(user_id:str, month:str) -> str:
     generate_external_data()
