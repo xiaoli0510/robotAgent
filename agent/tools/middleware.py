@@ -22,7 +22,7 @@ def monitor_tool(
     logger.info(f"[tool monitor]执行工具：{request.tool_call['name']}")
     logger.info(f"[tool monitor]传入参数：{request.tool_call['args']}")
 
-    # 当调用tool为fill_context_for_report时，添加report为True
+    # 当调用tool为4时，添加report为True
     if request.tool_call['name'] == "fill_context_for_report":
         request.runtime.context["report"] = True
 

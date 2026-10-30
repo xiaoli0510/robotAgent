@@ -1,4 +1,5 @@
 from langchain.agents import create_agent
+from langchain_core.messages import AIMessage
 
 from model.factory import chat_model
 from utils.prompt_loader import load_system_prompts
@@ -15,21 +16,22 @@ class ReactAgent:
         )
 
     def execute_stream(self, query: str):
-        input_dirt = {
+        input_data = {
             "messages": [
                 {"role": "user", "content":query}
             ]
         }
 
         # 返回迭代器
-        for chunk in self.agent.stream(input_dirt,stream_mode="values", context={"reoort": False}):
+        for chunk in self.agent.stream(input_data,stream_mode="values", context={"report": False}):
             latest_message = chunk["messages"][-1]
-            if latest_message:
+            # 是ai回复消息类型
+            if isinstance(latest_message,AIMessage) and latest_message:
                 yield latest_message.content.strip() + "\n"
 
 
-if __name__ == '__main__':
-    agent = ReactAgent()
-
-    for chunk in agent.execute_stream("生成我的个人的使用报告"):
-        print(chunk, end="", flush =True)
+# if __name__ == '__main__':
+#     agent = ReactAgent()
+#
+#     for chunk in agent.execute_stream("生成我的个人的使用报告"):
+#         print(chunk, end="", flush =True)
